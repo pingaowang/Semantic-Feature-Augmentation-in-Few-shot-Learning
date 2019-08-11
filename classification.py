@@ -117,7 +117,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
                     optimizer.step()
 
                 # statistics
-                running_loss += loss.data[0] * inputs.size(0)
+                running_loss += loss.data.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == c.squeeze(1))
 
 
