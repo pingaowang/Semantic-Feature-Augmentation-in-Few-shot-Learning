@@ -59,13 +59,14 @@ class miniImagenetEmbeddingDataset(data.Dataset):
 
         self.type = type
         self.data = collections.OrderedDict(sorted(self.data.items()))
-        self.classes_dict = {self.data.keys()[i]:i  for i in range(len(self.data.keys()))} # map NLabel to id(0-99)
+        self.l_data_keys = list(self.data.keys())
+        self.classes_dict = {self.l_data_keys[i]:i  for i in range(len(self.l_data_keys))} # map NLabel to id(0-99)
 
         self.Files = []
         self.belong = []
 
-        for c in range(len(self.data.keys())):
-            for file in self.data[self.data.keys()[c]]:
+        for c in range(len(self.l_data_keys)):
+            for file in self.data[self.l_data_keys[c]]:
                 self.Files.append(file)
                 self.belong.append(c)
         
