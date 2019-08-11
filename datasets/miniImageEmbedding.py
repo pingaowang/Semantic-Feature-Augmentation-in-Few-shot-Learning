@@ -13,13 +13,13 @@ import getpass
 userName = getpass.getuser()
 
 
-pathminiImageNet = '/home/'+userName+'/data/miniImagenet/'
+pathminiImageNet = '/home/'+userName+'/datasets/mini_imagenet/'
 pathImages = os.path.join(pathminiImageNet,'images/')
 # LAMBDA FUNCTIONS
 filenameToPILImage = lambda x: Image.open(x)
 
 class miniImagenetEmbeddingDataset(data.Dataset):
-    def __init__(self, dataroot = '/home/'+userName+'/data/miniImagenet', type = 'train'):
+    def __init__(self, dataroot = pathminiImageNet, type = 'train'):
         if type == 'specialtest':
             type = 'test'
         # Transformations to the image
