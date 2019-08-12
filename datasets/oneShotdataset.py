@@ -61,6 +61,7 @@ class miniImagenetOneshotDataset(data.Dataset):
         self.miniImagenetImagesDir = os.path.join(dataroot,'images')
 
         self.data = loadSplit(splitFile = os.path.join(dataroot,type + '.csv'))
+        self.l_data_keys = list(self.data.keys())
         self.type = type
         self.data = collections.OrderedDict(sorted(self.data.items()))
 
@@ -73,7 +74,7 @@ class miniImagenetOneshotDataset(data.Dataset):
         testImages = 1
         testBelongs = torch.LongTensor(self.ways*self.test_num,1)
 
-        selected_classes = np.random.choice(self.data.keys(), self.ways, False)
+        selected_classes = np.random.choice(self.l_data_keys, self.ways, False)
         for i in range(self.ways):
             files = np.random.choice(self.data[selected_classes[i]], self.shots, False)
             for j in range(self.shots):
